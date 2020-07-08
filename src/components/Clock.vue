@@ -1,5 +1,5 @@
 <template>
-  <div id="clock" class="grid" v-bind:class="themeColor">
+  <div id="clock" v-bind:class="themeColor">
     <div id="settings-toggle" @click="toggleSettings">
       <svg fill="white" viewBox="0 0 20 20">
         <path
@@ -9,10 +9,8 @@
     </div>
     <div id="time-remaining">
       <p id="minutes-remaining">
-        {{ Math.floor(timeRemaining / 60) }} minutes remaining
-      </p>
-      <p id="seconds-remaining">
-        {{ Math.floor(timeRemaining % 60) }} seconds remaining
+        {{ Math.floor(timeRemaining / 60) }} :
+        {{ Math.floor(timeRemaining % 60) }}
       </p>
     </div>
     <div id="clock-start-toggle" @click="countDown">
@@ -49,23 +47,18 @@ export default {
 
   methods: {
     toggleSettings() {
-      let settings = document.getElementById("settings");
-      settings.classList.toggle("hidden");
-      settings.classList.toggle("grid");
-      clock.classList.toggle("grid");
-      clock.classList.toggle("hidden")
+      clock.style.display = "none";
+      settings.style.display = "grid";
     },
     resetTimer() {
-      
       if (this.paused === false) {
         this.paused = true;
         startBtn.classList.toggle("hidden");
         stopBtn.classList.toggle("hidden");
         console.log(this.paused);
       }
-      
-      this.timeRemaining = this.workTime * 60;
 
+      this.timeRemaining = this.workTime * 60;
     },
     countDown() {
       let stopBtn = document.getElementById("stop-btn");
@@ -78,7 +71,7 @@ export default {
           startBtn.classList.toggle("hidden");
           stopBtn.classList.toggle("hidden");
           console.log(this.paused);
-          alert("Time is Up")
+          alert("Time is Up");
           this.timeRemaining = this.workTime * 60;
         } else {
           clearInterval(countInterval);
@@ -101,32 +94,6 @@ export default {
 </script>
 
 <style>
-.blue {
-  background-color: cornflowerblue;
-}
-
-.green {
-  background-color: greenyellow;
-}
-
-.hidden {
-  display: none;
-}
-
-.block {
-  display: block;
-}
-
-.grid {
-  display: grid;
-  width: 100vw;
-}
-
-#time-remaining {
-  grid-row: 1;
-  grid-column: 2;
-}
-
 #task-header {
   width: 100%;
   grid-row: 4;
@@ -141,7 +108,10 @@ export default {
   align-items: center;
   justify-items: center;
   color: white;
+  display: grid;
+  width: 100vw;
 }
+
 #settings-toggle {
   grid-column: 1;
   width: 45px;
@@ -152,6 +122,7 @@ export default {
 #task-name {
   grid-row: 5;
   grid-column: 1 / 4;
+  align-self: flex-start;
 }
 input[type="text"] {
   background: none;
@@ -164,8 +135,10 @@ input[type="text"]::placeholder {
   color: white;
 }
 #clock-start-toggle {
-  width: 400px;
-  height: 400px;
+  width: 75vw;
+  height: 75vw;
+  max-width: 400px;
+  max-height: 400px;
   border: 15px solid white;
   border-radius: 100%;
   grid-row: 3;
@@ -176,5 +149,20 @@ input[type="text"]::placeholder {
 
 #clock-start-toggle:hover {
   opacity: 0.5;
+}
+
+@media screen and (max-width: 700px) {
+  #settings-toggle {
+    grid-row: 1;
+    align-self: flex-start;
+    margin-top: 15px;
+    justify-self: flex-start;
+    margin-left: 15px;
+  }
+
+  #reset-btn {
+    align-self: flex-start;
+    margin-top: 15px;
+  }
 }
 </style>

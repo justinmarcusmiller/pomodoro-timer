@@ -22,3 +22,11 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## TODO
+- [ ] Write better README
+- [ ] Finish mobile desgin
+- [ ] Build rest of emiters
+- [ ] Notifications
+- [ ] Better UI
+- [ ] Upload to Heroku
