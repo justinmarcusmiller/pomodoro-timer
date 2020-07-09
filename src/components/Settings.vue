@@ -22,11 +22,23 @@
         <label for="work-time">Work Time</label>
       </div>
       <div class="setting-block-sm" v-bind:class="themeColor">
-        <input type="number" value="5" max="60" min="1" />
+        <input
+          type="number"
+          value="5"
+          @input="changeShortBreakTime"
+          max="60"
+          min="1"
+        />
         <label for="short-break-time">Short Break</label>
       </div>
       <div class="setting-block-sm" v-bind:class="themeColor">
-        <input type="number" value="15" max="60" min="1" />
+        <input
+          type="number"
+          value="15"
+          @input="changeLongBreakTime"
+          max="60"
+          min="1"
+        />
         <label for="long-break-time">Long Break</label>
       </div>
       <div class="setting-block-md" v-bind:class="themeColor">
@@ -68,6 +80,14 @@ export default {
     changeWorkTime(event) {
       this.workTime = event.target.value;
       this.$emit("workTimeChanged", this.workTime);
+    },
+    changeShortBreakTime(event) {
+      this.shortBreakTime = event.target.value;
+      this.$emit("shortBreakTimeChanged", this.shortBreakTime);
+    },
+    changeLongBreakTime(event) {
+      this.longBreakTimee = event.target.value;
+      this.$emit("longBreakTimeChanged", this.longBreakTime);
     },
     toggleSettings() {
       clock.style.display = "grid";

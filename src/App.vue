@@ -6,6 +6,8 @@
       :longBreakTime="longBreakTime"
       :themeColor="themeColor"
       @workTimeChanged="workTime = $event"
+      @shortBreakTimeChanged="shortBreakTime = $event"
+      @longBreakTimeChanged="longBreakTime = $event"
       @themeChanged="themeColor = $event"
     />
     <Clock
