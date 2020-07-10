@@ -1,12 +1,16 @@
 <template>
   <div id="settings">
-    <div id="exit-btn" @click="toggleSettings">
-      <svg fill="currentColor" viewBox="0 0 20 20">
+    <div id="settings-toggle" @click="toggleSettings">
+      <svg
+        viewBox="0 0 16 16"
+        class="bi bi-gear-fill"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
           fill-rule="evenodd"
-          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-          clip-rule="evenodd"
-        ></path>
+          d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 0 0-5.86 2.929 2.929 0 0 0 0 5.858z"
+        />
       </svg>
     </div>
     <h2>Time</h2>
@@ -91,7 +95,9 @@ export default {
     },
     toggleSettings() {
       clock.style.display = "grid";
+      clock.style.opacity = "1"
       settings.style.display = "none";
+      settings.style.opacity = "0";
     },
   },
 };
@@ -99,9 +105,15 @@ export default {
 
 <style>
 #settings {
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 100px auto auto auto auto;
+  height: 100vh;
+  align-items: center;
+  justify-items: center;
   display: none;
-  width: 100%;
-  justify-content: center;
+  width: 100vw;
+  padding: 0 15px;
+  transition: opacity ease-in-out 1s;
 }
 
 #settings-grid {
@@ -109,10 +121,11 @@ export default {
   grid-gap: 15px;
   justify-items: center;
   align-items: center;
-}
-
-h2 {
   grid-column: 1 / 4;
+  grid-row: 3;
+  width: 100%;
+  height: 100%;
+  
 }
 
 .setting-block-sm {
@@ -161,10 +174,9 @@ input[type="number" i] {
 
 #exit-btn {
   grid-column: 1;
-  width: 45px;
+  width: 35px;
   align-self: center;
-  justify-self: flex-start;
-  margin-top: 5px;
+  justify-self: center;
 }
 
 .color-block {
@@ -184,6 +196,10 @@ input[type="number" i] {
   opacity: 0.8;
 }
 
+h2 {
+  grid-column: 1 / 4;
+}
+
 #color-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -192,6 +208,10 @@ input[type="number" i] {
   padding: 15px;
   border-radius: 5px;
   justify-items: center;
+  grid-column: 1 / 4;
+  grid-row: 5;
+  width: 100%;
+  height: 100%;
 }
 
 @media screen and (max-width: 700px) {

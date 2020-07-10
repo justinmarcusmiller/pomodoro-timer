@@ -70,8 +70,10 @@ export default {
   },
   methods: {
     toggleSettings() {
+      clock.style.opacity = "0"
       clock.style.display = "none";
       settings.style.display = "grid";
+      settings.style.opacity = "1";
     },
     resetTimer() {
       let stopBtn = document.getElementById("stop-btn");
@@ -144,21 +146,21 @@ export default {
 
 #clock {
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 5fr 1fr 1fr;
+  grid-template-rows: 100px 1fr 5fr 1fr 1fr;
   height: 100vh;
   align-items: center;
   justify-items: center;
   color: white;
   display: grid;
   width: 100vw;
+  transition: opacity ease-in-out 1s;
 }
 
 #settings-toggle {
   grid-column: 1;
   width: 35px;
   align-self: center;
-  justify-self: flex-start;
-  margin-left: 50px;
+  justify-self: center;
 }
 #task-name {
   grid-row: 5;
@@ -208,7 +210,6 @@ input[type="text"]::placeholder {
 @media screen and (max-width: 700px) {
   #settings-toggle {
     grid-row: 1;
-    justify-self: flex-start;
   }
 }
 </style>
