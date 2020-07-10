@@ -1,20 +1,25 @@
 <template>
   <div id="app">
-    <Settings
-      :workTime="workTime"
-      :shortBreakTime="shortBreakTime"
-      :longBreakTime="longBreakTime"
-      :themeColor="themeColor"
-      @workTimeChanged="workTime = $event"
-      @shortBreakTimeChanged="shortBreakTime = $event"
-      @longBreakTimeChanged="longBreakTime = $event"
-      @themeChanged="themeColor = $event"
-    />
+    <transition name="fade">
+      <Settings
+        v-if="showSettings === true"
+        :workTime="workTime"
+        :shortBreakTime="shortBreakTime"
+        :longBreakTime="longBreakTime"
+        :themeColor="themeColor"
+        @workTimeChanged="workTime = $event"
+        @shortBreakTimeChanged="shortBreakTime = $event"
+        @longBreakTimeChanged="longBreakTime = $event"
+        @themeChanged="themeColor = $event"
+        @showSettings="showSettings = $event"
+      />
+    </transition>
     <Clock
       :workTime="workTime"
       :shortBreakTime="shortBreakTime"
       :longBreakTime="longBreakTime"
       :themeColor="themeColor"
+      @showSettings="showSettings = $event"
     />
   </div>
 </template>
@@ -35,6 +40,7 @@ export default {
       shortBreakTime: 5,
       longBreakTime: 15,
       themeColor: "blue",
+      showSettings: false,
     };
   },
   methods: {},
@@ -125,5 +131,15 @@ body {
 #time-remaining {
   grid-row: 1;
   grid-column: 2;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 100ms ease-out;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

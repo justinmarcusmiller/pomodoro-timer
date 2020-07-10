@@ -1,6 +1,6 @@
 <template>
   <div id="settings">
-    <div id="settings-toggle" @click="toggleSettings">
+    <div id="settings-toggle" @click="hideSettings">
       <svg
         viewBox="0 0 16 16"
         class="bi bi-gear-fill"
@@ -93,11 +93,8 @@ export default {
       this.longBreakTimee = event.target.value;
       this.$emit("longBreakTimeChanged", this.longBreakTime);
     },
-    toggleSettings() {
-      clock.style.display = "grid";
-      clock.style.opacity = "1"
-      settings.style.display = "none";
-      settings.style.opacity = "0";
+    hideSettings() {
+      this.$emit("showSettings", false)
     },
   },
 };
@@ -110,8 +107,10 @@ export default {
   height: 100vh;
   align-items: center;
   justify-items: center;
-  display: none;
+  display: grid;
   width: 100vw;
+  background-color: white;
+  z-index: 1;
   padding: 0 15px;
   transition: opacity ease-in-out 1s;
 }

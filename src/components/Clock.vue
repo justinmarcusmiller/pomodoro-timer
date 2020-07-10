@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 <template>
   <div id="clock" v-bind:class="themeColor">
-    <div id="settings-toggle" @click="toggleSettings">
+    <div id="settings-toggle" @click="showSettings">
       <svg
         viewBox="0 0 16 16"
         class="bi bi-gear-fill"
@@ -69,11 +69,8 @@ export default {
     },
   },
   methods: {
-    toggleSettings() {
-      clock.style.opacity = "0"
-      clock.style.display = "none";
-      settings.style.display = "grid";
-      settings.style.opacity = "1";
+    showSettings() {
+      this.$emit("showSettings", true)
     },
     resetTimer() {
       let stopBtn = document.getElementById("stop-btn");
@@ -153,6 +150,8 @@ export default {
   color: white;
   display: grid;
   width: 100vw;
+  position: fixed;
+  z-index: 0;
   transition: opacity ease-in-out 1s;
 }
 
