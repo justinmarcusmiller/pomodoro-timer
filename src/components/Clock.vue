@@ -49,6 +49,7 @@ export default {
     return {
       paused: true,
       timeRemaining: this.workTime * 60,
+      mode: "work",
     };
   },
   computed: {
@@ -79,7 +80,7 @@ export default {
         stopBtn.classList.toggle("hidden");
         console.log(this.paused);
       }
-
+      this.mode = "work";
       this.timeRemaining = this.workTime * 60;
     },
     countDown() {
@@ -93,8 +94,20 @@ export default {
           startBtn.classList.toggle("hidden");
           stopBtn.classList.toggle("hidden");
           console.log(this.paused);
-          showNotification();
-          this.timeRemaining = this.workTime * 60;
+          if (this.mode === "work") {
+            this.mode = "break";
+            alert("Entering Break Mode");
+            clearInterval(countInterval);
+            this.timeRemaining = this.shortBreakTime * 60;
+            this.countDown(); //Error Here
+          } else if (this.mode === "break") {
+            alert("Back To Work!");
+            this.mode = "work";
+            this.timeRemaining = this.workTime * 60;
+            this.countDown();
+          } else {
+            console.log("ERROR: INCORRECT MODE");
+          }
         } else {
           clearInterval(countInterval);
         }
@@ -183,6 +196,7 @@ input[type="text"]::placeholder {
 #reset-btn:hover {
   background-color: white;
   color: black;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 700px) {

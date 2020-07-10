@@ -32,8 +32,8 @@ export default {
   data() {
     return {
       workTime: 1,
-      shortBreakTime: 0,
-      longBreakTime: 0,
+      shortBreakTime: 5,
+      longBreakTime: 15,
       themeColor: "blue",
     };
   },
