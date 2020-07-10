@@ -74,14 +74,20 @@ export default {
       settings.style.display = "grid";
     },
     resetTimer() {
+      let stopBtn = document.getElementById("stop-btn");
+      let startBtn = document.getElementById("start-btn");
       if (this.paused === false) {
         this.paused = true;
-        startBtn.classList.toggle("hidden");
-        stopBtn.classList.toggle("hidden");
+        startBtn.style.display = "block"
+        stopBtn.style.display = "none"
         console.log(this.paused);
       }
-      this.mode = "work";
-      this.timeRemaining = this.workTime * 60;
+      if (this.mode === "work") {
+        this.timeRemaining = this.workTime * 60;
+      } else if (this.mode === "break") {
+        this.timeRemaining = this.shortBreakTime * 60;
+      }
+      
     },
     countDown() {
       let stopBtn = document.getElementById("stop-btn");
@@ -91,8 +97,8 @@ export default {
           this.timeRemaining -= 1;
         } else if (this.timeRemaining === 0) {
           this.paused = true;
-          startBtn.classList.toggle("hidden");
-          stopBtn.classList.toggle("hidden");
+          startBtn.style.display = "block"
+          stopBtn.style.display = "none"
           console.log(this.paused);
           if (this.mode === "work") {
             this.mode = "break";
@@ -114,13 +120,13 @@ export default {
       }, 1000);
       if (this.paused === true && this.timeRemaining > 0) {
         this.paused = false;
-        startBtn.classList.toggle("hidden");
-        stopBtn.classList.toggle("hidden");
+        startBtn.style.display = "none"
+        stopBtn.style.display = "block"
         console.log(this.paused);
       } else {
         this.paused = true;
-        startBtn.classList.toggle("hidden");
-        stopBtn.classList.toggle("hidden");
+        startBtn.style.display = "block"
+        stopBtn.style.display = "none"
         console.log(this.paused);
       }
     },
