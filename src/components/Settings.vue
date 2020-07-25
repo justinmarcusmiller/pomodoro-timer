@@ -19,6 +19,7 @@
         <input
           type="number"
           :value="workTime"
+          name="work-time"
           @input="changeWorkTime"
           max="60"
           min="1"
@@ -29,6 +30,7 @@
         <input
           type="number"
           value="5"
+          name="break-time"
           @input="changeBreakTime"
           max="60"
           min="1"
@@ -69,11 +71,11 @@ export default {
     },
     changeWorkTime(event) {
       this.workTime = event.target.value;
-      this.$emit("workTimeChanged", this.workTime);
+      this.$emit("workTimeChanged", Number(this.workTime));
     },
     changeBreakTime(event) {
-      this.breakTimee = event.target.value;
-      this.$emit("breakTimeChanged", this.breakTime);
+      this.breakTime = event.target.value;
+      this.$emit("breakTimeChanged", Number(this.breakTime));
     },
     hideSettings() {
       this.$emit("showSettings", false);
