@@ -77,7 +77,7 @@ export default {
   props: ["workTime", "shortBreakTime", "longBreakTime", "themeColor"],
   methods: {
     changeTheme(color) {
-      console.log(color);
+      //console.log(color);
       this.themeColor = color;
       this.$emit("themeChanged", this.themeColor);
     },

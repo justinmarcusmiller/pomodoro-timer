@@ -44,16 +44,18 @@
 
 <script>
 export default {
-  props: ["workTime", "shortBreakTime", "longBreakTime", "themeColor"],
-  data() {
-    return {
-      paused: true,
-      timeRemaining: this.workTime * 60,
-      mode: "work",
-    };
-  },
+  props: [
+    "workTime",
+    "shortBreakTime",
+    "longBreakTime",
+    "themeColor",
+    "paused",
+    "mode",
+    "timeRemaining",
+  ],
   computed: {
     minutesRemaining: function() {
+      //console.log(this.timeRemaining)
       if (Math.floor(this.timeRemaining / 60) < 10) {
         return "0" + Math.floor(this.timeRemaining / 60);
       } else {
@@ -70,23 +72,22 @@ export default {
   },
   methods: {
     showSettings() {
-      this.$emit("showSettings", true)
+      this.$emit("showSettings", true);
     },
     resetTimer() {
       let stopBtn = document.getElementById("stop-btn");
       let startBtn = document.getElementById("start-btn");
       if (this.paused === false) {
         this.paused = true;
-        startBtn.style.display = "block"
-        stopBtn.style.display = "none"
-        console.log(this.paused);
+        startBtn.style.display = "block";
+        stopBtn.style.display = "none";
+        //console.log(this.paused);
       }
       if (this.mode === "work") {
         this.timeRemaining = this.workTime * 60;
       } else if (this.mode === "break") {
         this.timeRemaining = this.shortBreakTime * 60;
       }
-      
     },
     countDown() {
       let stopBtn = document.getElementById("stop-btn");
@@ -96,22 +97,22 @@ export default {
           this.timeRemaining -= 1;
         } else if (this.timeRemaining === 0) {
           this.paused = true;
-          startBtn.style.display = "block"
-          stopBtn.style.display = "none"
-          console.log(this.paused);
+          startBtn.style.display = "block";
+          stopBtn.style.display = "none";
+          //console.log(this.paused);
           if (this.mode === "work") {
             this.mode = "break";
             alert("Entering Break Mode");
             clearInterval(countInterval);
             this.timeRemaining = this.shortBreakTime * 60;
-            this.countDown(); //Error Here
+            this.countDown();
           } else if (this.mode === "break") {
             alert("Back To Work!");
             this.mode = "work";
             this.timeRemaining = this.workTime * 60;
             this.countDown();
           } else {
-            console.log("ERROR: INCORRECT MODE");
+            //console.log("ERROR: INCORRECT MODE");
           }
         } else {
           clearInterval(countInterval);
@@ -119,14 +120,14 @@ export default {
       }, 1000);
       if (this.paused === true && this.timeRemaining > 0) {
         this.paused = false;
-        startBtn.style.display = "none"
-        stopBtn.style.display = "block"
-        console.log(this.paused);
+        startBtn.style.display = "none";
+        stopBtn.style.display = "block";
+        //console.log(this.paused);
       } else {
         this.paused = true;
-        startBtn.style.display = "block"
-        stopBtn.style.display = "none"
-        console.log(this.paused);
+        startBtn.style.display = "block";
+        stopBtn.style.display = "none";
+        //console.log(this.paused);
       }
     },
   },

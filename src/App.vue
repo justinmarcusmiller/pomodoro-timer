@@ -19,7 +19,10 @@
       :shortBreakTime="shortBreakTime"
       :longBreakTime="longBreakTime"
       :themeColor="themeColor"
+      :paused="paused"
       @showSettings="showSettings = $event"
+      :timeRemaining="timeRemaining"
+      :mode="mode"
     />
   </div>
 </template>
@@ -41,7 +44,26 @@ export default {
       longBreakTime: 15,
       themeColor: "blue",
       showSettings: false,
+      paused: true,
+      mode: "work",
+      timeRemaining: (this.workTime * 60),
     };
+  },
+  created: function () {
+    this.timeRemaining = (this.workTime * 60)
+  },
+  watch: {
+    workTime: function() {
+      //console.log("workTime changed");
+      this.timeRemaining = (this.workTime * 60)
+      //console.log(this.timeRemaining)
+      this.paused = true;
+      let stopBtn = document.getElementById("stop-btn");
+      let startBtn = document.getElementById("start-btn");
+      startBtn.style.display = "block";
+      stopBtn.style.display = "none";
+      //console.log(this.paused);
+    },
   },
   methods: {},
 };
