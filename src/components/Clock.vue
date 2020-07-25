@@ -46,8 +46,7 @@
 export default {
   props: [
     "workTime",
-    "shortBreakTime",
-    "longBreakTime",
+    "breakTime",
     "themeColor",
     "paused",
     "mode",
@@ -86,7 +85,7 @@ export default {
       if (this.mode === "work") {
         this.timeRemaining = this.workTime * 60;
       } else if (this.mode === "break") {
-        this.timeRemaining = this.shortBreakTime * 60;
+        this.timeRemaining = this.breakTime * 60;
       }
     },
     countDown() {
@@ -104,7 +103,7 @@ export default {
             this.mode = "break";
             alert("Entering Break Mode");
             clearInterval(countInterval);
-            this.timeRemaining = this.shortBreakTime * 60;
+            this.timeRemaining = this.breakTime * 60;
             this.countDown();
           } else if (this.mode === "break") {
             alert("Back To Work!");
