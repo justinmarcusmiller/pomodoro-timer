@@ -35,7 +35,7 @@
           max="60"
           min="1"
         />
-        <label for="break-time">Break</label>
+        <label for="break-time">Break Time</label>
       </div>
     </div>
 
@@ -148,12 +148,13 @@ export default {
 input[type="number"] {
   background: none;
   border: none;
-  text-align: right;
-  width: 45px;
+  margin-left: 10px;
+  width: 100px;
 }
 
 input[type="number" i] {
   font-weight: 600;
+  padding: 5px;
   text-align: center;
 }
 
