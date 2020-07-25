@@ -107,11 +107,12 @@ export default {
   height: 100vh;
   align-items: center;
   justify-items: center;
+  justify-content: center;
   display: grid;
   width: 100vw;
   background-color: white;
   z-index: 1;
-  padding: 0 15px;
+  /* padding: 15px; */
   transition: opacity ease-in-out 1s;
 }
 
@@ -122,9 +123,9 @@ export default {
   align-items: center;
   grid-column: 1 / 4;
   grid-row: 3;
-  width: 100%;
+  width: 96%;
   height: 100%;
-  
+  max-width: 1000px;
 }
 
 .setting-block-sm {
@@ -182,8 +183,8 @@ input[type="number" i] {
   grid-column: auto;
   padding: 5px;
   display: flex;
-  width: 20vw;
-  height: 10vw;
+  width: 100%;
+  height: 100%;
   max-width: 250px;
   max-height: 150px;
   border-radius: 5px;
@@ -202,21 +203,26 @@ h2 {
 #color-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 100px 100px 100px;
   grid-gap: 15px;
   padding: 15px;
   border-radius: 5px;
   justify-items: center;
   grid-column: 1 / 4;
   grid-row: 5;
-  width: 100%;
+  width: 96%;
   height: 100%;
+  max-width: 1000px;
 }
 
 @media screen and (max-width: 700px) {
   #color-grid {
     grid-template-columns: 1fr 1fr 1fr;
-    margin-bottom: 15px;
+    grid-template-rows: 100px 100px 100px 100px;
+  }
+
+  #settings {
+    height: 100%;
   }
 
   .setting-block-sm {

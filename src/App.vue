@@ -36,7 +36,7 @@ export default {
   },
   data() {
     return {
-      workTime: 1,
+      workTime: 15,
       shortBreakTime: 5,
       longBreakTime: 15,
       themeColor: "blue",
