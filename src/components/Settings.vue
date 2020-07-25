@@ -29,25 +29,11 @@
         <input
           type="number"
           value="5"
-          @input="changeShortBreakTime"
+          @input="changeBreakTime"
           max="60"
           min="1"
         />
-        <label for="short-break-time">Short Break</label>
-      </div>
-      <div class="setting-block-sm" v-bind:class="themeColor">
-        <input
-          type="number"
-          value="15"
-          @input="changeLongBreakTime"
-          max="60"
-          min="1"
-        />
-        <label for="long-break-time">Long Break</label>
-      </div>
-      <div class="setting-block-md" v-bind:class="themeColor">
-        <input type="number" />
-        <label for="numOfSessions">Number Of Sessions</label>
+        <label for="break-time">Break</label>
       </div>
     </div>
 
@@ -74,7 +60,7 @@
 
 <script>
 export default {
-  props: ["workTime", "shortBreakTime", "longBreakTime", "themeColor"],
+  props: ["workTime", "breakTime", "themeColor"],
   methods: {
     changeTheme(color) {
       //console.log(color);
@@ -85,16 +71,12 @@ export default {
       this.workTime = event.target.value;
       this.$emit("workTimeChanged", this.workTime);
     },
-    changeShortBreakTime(event) {
-      this.shortBreakTime = event.target.value;
-      this.$emit("shortBreakTimeChanged", this.shortBreakTime);
-    },
-    changeLongBreakTime(event) {
-      this.longBreakTimee = event.target.value;
-      this.$emit("longBreakTimeChanged", this.longBreakTime);
+    changeBreakTime(event) {
+      this.breakTimee = event.target.value;
+      this.$emit("breakTimeChanged", this.breakTime);
     },
     hideSettings() {
-      this.$emit("showSettings", false)
+      this.$emit("showSettings", false);
     },
   },
 };
@@ -112,18 +94,18 @@ export default {
   width: 100vw;
   background-color: white;
   z-index: 1;
+  min-height: 100vh;
   /* padding: 15px; */
   transition: opacity ease-in-out 1s;
 }
 
 #settings-grid {
-  display: grid;
-  grid-gap: 15px;
+  display: flex;
   justify-items: center;
   align-items: center;
   grid-column: 1 / 4;
   grid-row: 3;
-  width: 96%;
+  width: 100%;
   height: 100%;
   max-width: 1000px;
 }
@@ -136,6 +118,7 @@ export default {
   justify-content: space-evenly;
   border-radius: 5px;
   width: 100%;
+  margin: 15px;
   height: 150px;
   color: white;
   font-weight: 600;
@@ -211,8 +194,7 @@ h2 {
   grid-column: 1 / 4;
   grid-row: 5;
   width: 96%;
-  height: 100%;
-  max-width: 1000px;
+  max-width: 1000px;;
 }
 
 @media screen and (max-width: 700px) {

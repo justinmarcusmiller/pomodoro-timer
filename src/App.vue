@@ -4,20 +4,17 @@
       <Settings
         v-if="showSettings === true"
         :workTime="workTime"
-        :shortBreakTime="shortBreakTime"
-        :longBreakTime="longBreakTime"
+        :breakTime="breakTime"
         :themeColor="themeColor"
         @workTimeChanged="workTime = $event"
-        @shortBreakTimeChanged="shortBreakTime = $event"
-        @longBreakTimeChanged="longBreakTime = $event"
+        @breakTimeChanged="breakTime = $event"
         @themeChanged="themeColor = $event"
         @showSettings="showSettings = $event"
       />
     </transition>
     <Clock
       :workTime="workTime"
-      :shortBreakTime="shortBreakTime"
-      :longBreakTime="longBreakTime"
+      :breakTime="breakTime"
       :themeColor="themeColor"
       :paused="paused"
       @showSettings="showSettings = $event"
@@ -40,8 +37,7 @@ export default {
   data() {
     return {
       workTime: 15,
-      shortBreakTime: 5,
-      longBreakTime: 15,
+      breakTime: 5,
       themeColor: "blue",
       showSettings: false,
       paused: true,
